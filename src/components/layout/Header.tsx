@@ -90,7 +90,7 @@ const Header = () => {
 
      {/* Mobile Menu and CTA */}
      <div className="md:hidden flex items-center gap-3">
-      <Button className="text-xs rounded-full h-10 px-4">Consultation</Button>
+      {/* <Button className="text-xs rounded-full h-10 px-4">Consultation</Button> */}
 
       {/* Mobile Drawer */}
       <Drawer open={isOpen} onOpenChange={setIsOpen}>

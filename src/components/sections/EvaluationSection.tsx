@@ -12,7 +12,7 @@ const EvaluationSection = () => {
      className="w-[452.80865755619953px]  absolute left-0 top-[-500px] rotate-[-50.89 deg]"
      fill
     />
-    <div className="flex md:flex-row flex-col justify-between px-4 relative z-50">
+    <div className="flex md:flex-row flex-col justify-between md:px-4 relative z-50">
      <div className="md:w-1/2">
       <h1 className="text-white lg:text-4xl font-bold md:text-3xl text-xl mb-4 md:mb-0">
        Get Started with a Free Case Evaluation Today!

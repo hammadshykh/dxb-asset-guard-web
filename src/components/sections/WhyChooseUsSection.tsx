@@ -68,7 +68,10 @@ export default function WhyChooseUsSection() {
  }, []);
 
  return (
-  <section ref={sectionRef} className="relative py-20 px-4  overflow-hidden">
+  <section
+   ref={sectionRef}
+   className="relative py-10 md:py-20 px-4  overflow-hidden"
+  >
    {/* Background Dubai Tower Image */}
    <Image
     src="/why-choose-us.jpg"

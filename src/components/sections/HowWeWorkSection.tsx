@@ -89,7 +89,7 @@ export default function HowWeWorkSection() {
  }, []);
 
  return (
-  <section ref={sectionRef} className="md:pt-16 pt-10 bg-white">
+  <section ref={sectionRef} className="md:pt-16 py-10 bg-white">
    <div className="max-w-7xl mx-auto px-4">
     {/* Header */}
     <div className="mb-14">

@@ -4,7 +4,7 @@ export default function Footer() {
    <div className="max-w-6xl mx-auto">
     <div className="text-center space-y-4">
      <div className="flex items-center justify-center space-x-2">
-      <div className="w-10 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+      <div className="w-10 h-8 bg-primary rounded-lg flex items-center justify-center">
        <span className="text-white font-bold text-sm">DXB</span>
       </div>
       <span className="text-xl font-semibold text-black">Asset Guard Web</span>

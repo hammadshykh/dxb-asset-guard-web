@@ -19,12 +19,12 @@ export function InfiniteSliderBasic() {
      <Image
       width={100}
       height={100}
-      src="/brands/logo.svg"
+      src="/brands/logo-2.svg"
       alt="Apple Music logo"
       className="h-[60px] w-[160px]"
      />
      <Image
-      src="/brands/logo.svg"
+      src="/brands/logo-3.svg"
       alt="Apple Music logo"
       className="h-[60px] w-[160px]"
       width={100}

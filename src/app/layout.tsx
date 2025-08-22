@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
+import { ReactLenis } from "@/lib/lenis";
+import LoadingScreen from "@/components/LoadingScreen";
 
 // Montserrat font setup
 const montserrat = Montserrat({
@@ -61,7 +64,7 @@ export default function RootLayout({
  children,
 }: Readonly<{ children: React.ReactNode }>) {
  return (
-  <html lang="en">
+  <html lang="en" suppressHydrationWarning>
    <body
     className={`
           ${montserrat.variable} 
@@ -70,7 +73,11 @@ export default function RootLayout({
           ${montserrat.className}
         `}
    >
-    {children}
+    <ReactLenis options={{ duration: 1.5 }} root>
+     {children}
+     {/* <LoadingScreen /> */}
+    </ReactLenis>
+    <NextTopLoader color="var(--primary)" height={3} showSpinner={false} />
     <Footer />
    </body>
   </html>

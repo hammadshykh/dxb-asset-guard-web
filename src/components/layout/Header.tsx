@@ -13,13 +13,14 @@ import {
  DrawerTitle,
  DrawerTrigger,
 } from "@/components/ui/drawer";
+import Link from "next/link";
 
 const navLinks = [
- { label: "Home", href: "#" },
- { label: "About Us", href: "#" },
- { label: "How It Works", href: "#" },
- { label: "Services", href: "#" },
- { label: "Blogs", href: "#" },
+ { label: "Home", href: "/" },
+ { label: "About Us", href: "/about" },
+ { label: "How It Works", href: "/contact" },
+ { label: "Services", href: "/services" },
+ { label: "Blogs", href: "/blog" },
 ];
 
 const Header = () => {
@@ -72,13 +73,13 @@ const Header = () => {
      <div className="backdrop-blur-md  h-[72px] bg-white/5 hidden md:flex items-center max-w-5xl justify-between ps-10 pe-2 rounded-full w-full">
       <nav className="hidden md:flex items-center space-x-10">
        {navLinks.map((link) => (
-        <a
+        <Link
          key={link.label}
          href={link.href}
          className="text-white hover:text-primary transition-colors font-medium duration-200 text-sm"
         >
          {link.label}
-        </a>
+        </Link>
        ))}
       </nav>
 

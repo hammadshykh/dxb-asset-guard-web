@@ -2,11 +2,23 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 import { Button } from "@/components/ui/button";
 import Header from "../layout/Header";
 
 export default function HeroSection() {
  const heroRef = useRef<HTMLElement>(null);
+ useGSAP(() => {
+  // Animate each card inside bottom-cards smoothly
+  gsap.from(".bottom-cards > div", {
+   scale: 0.7,
+   opacity: 0,
+   duration: 1.5,
+   delay: 2.8,
+   ease: "back.out(1.7)", // smoother bounce-like scale animation
+   stagger: 0.05, // each card one after another
+  });
+ }, []);
 
  useEffect(() => {
   const ctx = gsap.context(() => {
@@ -22,10 +34,10 @@ export default function HeroSection() {
     .from(
      ".hero-title",
      {
-      duration: 1,
+      duration: 1.8,
       y: 60,
-      opacity: 0,
-      ease: "power3.out",
+      ease: "expo.out",
+      stagger: 0.5,
      },
      "-=0.4"
     )
@@ -113,7 +125,7 @@ export default function HeroSection() {
 
      {/* Bottom Cards */}
      <div className="max-w-max ms-auto mt-10">
-      <div className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide">
+      <div className="flex bottom-cards md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide">
        {/* Card 1 */}
        <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px] snap-center shrink-0">
         <h3 className="text-white font-semibold mb-3">Lost Your Investment?</h3>

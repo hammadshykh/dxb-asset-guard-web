@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function ComingSoon({ pageName }: { pageName?: string }) {
+export default function ComingSoon() {
  const textRef = useRef(null);
 
  useEffect(() => {
@@ -25,7 +25,7 @@ export default function ComingSoon({ pageName }: { pageName?: string }) {
     ref={textRef}
     className="text-5xl md:text-7xl font-bold text-primary mb-6"
    >
-    {pageName || "Page"} Coming Soon 🚀
+    Coming Soon 🚀
    </motion.h1>
    <motion.p
     initial={{ opacity: 0, y: 20 }}

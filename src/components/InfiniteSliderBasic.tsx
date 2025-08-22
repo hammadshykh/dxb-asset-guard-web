@@ -3,18 +3,18 @@ import { InfiniteSlider } from "./ui/InfiniteSlider";
 
 export function InfiniteSliderBasic() {
  return (
-  <div className="md:h-32 bg-[#F4F4F4] ">
-   <div className=" flex md:flex-row flex-col items-center justify-between md:pl-40">
-    <div className="md:w-[400px] md:pr-16 p-4 ">
-     <p className="text-[#1E1E1E]">
+  <div className="md:h-[139px]  bg-[#F4F4F4]">
+   <div className=" flex md:flex-row flex-col items-center justify-between md:pl-34">
+    <div className="md:w-[550px]  py-4 md:p-4 ">
+     <p className="text-[#1E1E1E] max-w-[287px] font-[300]">
       Helping investors reclaim funds from failed or fraudulent real estate
       projects across Dubai.
      </p>
     </div>
     <InfiniteSlider
-     gap={60}
+     gap={100}
      reverse
-     className="bg-[#FBFBFB] h-32 w-full flex items-center justify-start"
+     className="bg-[#FBFBFB] md:h-[139px] h-24  w-full flex items-center justify-start"
     >
      <Image
       width={100}

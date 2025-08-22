@@ -14,7 +14,7 @@ export function ServiceCard({
  className = "",
 }: ServiceCardProps) {
  return (
-  <div className={`p-4  transition-shadow duration-300 ${className}`}>
+  <div className={`transition-shadow duration-300 ${className}`}>
    {/* Lightning Icon */}
    <div className="mb-4">
     <div className="bg-[#FFFAED] w-14 h-14 flex items-center rounded-full justify-center">
@@ -28,7 +28,9 @@ export function ServiceCard({
    <h3 className="font-medium text-[#1E1E1E] mb-3 leading-tight">{title}</h3>
 
    {/* Description */}
-   <p className="mb-4 text-[#1E1E1E] leading-relaxed">{description}</p>
+   <p className="mb-4 text-[#1E1E1E] font-[300] leading-relaxed">
+    {description}
+   </p>
 
    {/* Arrow Icon */}
    <div className="flex justify-start cursor-pointer">

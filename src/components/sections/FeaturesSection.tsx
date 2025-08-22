@@ -45,10 +45,10 @@ const services = [
 
 export default function FeaturesSection() {
  return (
-  <section className="py-16 px-4 sm:px-6 lg:px-8 ">
-   <div className="max-w-7xl mx-auto">
+  <section className="py-10 md:pt-20 ">
+   <div className="max-w-7xl mx-auto px-4 md:px-0">
     {/* Grid Layout - 4 columns on desktop, 2 on tablet, 1 on mobile */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:space-y-14 s md:grid-cols-2 lg:grid-cols-4 gap-10">
      {services.map((service, index) => (
       <ServiceCard
        key={index}

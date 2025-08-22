@@ -68,10 +68,7 @@ export default function WhyChooseUsSection() {
  }, []);
 
  return (
-  <section
-   ref={sectionRef}
-   className="relative py-10 md:py-20 px-4  overflow-hidden"
-  >
+  <section ref={sectionRef} className="relative py-10 md:pt-28 overflow-hidden">
    {/* Background Dubai Tower Image */}
    <Image
     src="/why-choose-us.jpg"
@@ -80,71 +77,73 @@ export default function WhyChooseUsSection() {
     className="w-full h-full object-cover absolute inset-0"
    />
 
-   <div className="relative ">
+   <div className="relative z-40">
     {/* Header Content */}
-    <div className="max-w-2xl sm:px-6 lg:px-14">
-     <div className="why-badge mb-4">
-      <span className="text-sm font-medium text-yellow-600">
-       Why Choose Us?
-      </span>
+    <div className="max-w-7xl mx-auto md:px-0 px-4">
+     <div className="max-w-xl">
+      <div className="why-badge mb-4">
+       <span className="text-sm font-medium text-yellow-600">
+        Why Choose Us?
+       </span>
+      </div>
+
+      <h2 className="why-title text-2xl  font-inter md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-6 leading-tight">
+       Your Trusted Partner for Property Investment Recovery
+      </h2>
+
+      <p className="why-description max-w-[400px] text-base sm:text-lg text-gray-700 mb-12 leading-relaxed">
+       Choose us for peace of mind and a partner committed to getting your
+       investment back where it belongs—your pocket.
+      </p>
      </div>
 
-     <h2 className="why-title text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-      Your Trusted Partner for Property Investment Recovery
-     </h2>
+     {/* Features Grid */}
+     <div className="grid grid-cols-1 !text-[#1E1E1E] md:grid-cols-2 lg:grid-cols-4 gap-4 md:pt-5">
+      {/* Feature 1 */}
+      <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg md:h-[224px]">
+       <h3 className="text-lg font-semibold text-gray-900 mb-3">
+        Specialized Legal Expertise
+       </h3>
+       <p className="text-sm md:text-base leading-relaxed font-[300]">
+        Our team of property law specialists has a proven track record of
+        recovering lost investments in {"Dubai's"} real estate market.
+       </p>
+      </div>
 
-     <p className="why-description text-base sm:text-lg text-gray-700 mb-12 leading-relaxed">
-      Choose us for peace of mind and a partner committed to getting your
-      investment back where it belongs—your pocket.
-     </p>
-    </div>
-   </div>
+      {/* Feature 2 */}
+      <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
+       <h3 className="text-lg font-semibold text-gray-900 mb-3">
+        Risk-Free Service
+       </h3>
+       <p className="text-sm md:text-base leading-relaxed font-[300]">
+        We operate on a No Win, No Fee basis, meaning you pay nothing unless we
+        succeed.
+       </p>
+      </div>
 
-   {/* Features Grid */}
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 sm:px-6 lg:px-12 gap-4 md:pt-10">
-    {/* Feature 1 */}
-    <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg md:h-[224px]">
-     <h3 className="text-lg font-semibold text-gray-900 mb-3">
-      Specialized Legal Expertise
-     </h3>
-     <p className="text-sm md:text-base text-gray-600 leading-relaxed font-[300]">
-      Our team of property law specialists has a proven track record of
-      recovering lost investments in {"Dubai's"} real estate market.
-     </p>
-    </div>
+      {/* Feature 3 */}
+      <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
+       <h3 className="text-lg font-semibold text-gray-900 mb-3">
+        Tailored Solutions for Every Client
+       </h3>
+       <p className="text-sm md:text-base leading-relaxed font-[300]">
+        Each case is unique, and we provide personalized strategies to ensure
+        the best possible outcome for your claim.
+       </p>
+      </div>
 
-    {/* Feature 2 */}
-    <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
-     <h3 className="text-lg font-semibold text-gray-900 mb-3">
-      Risk-Free Service
-     </h3>
-     <p className="text-sm md:text-base text-gray-600 leading-relaxed font-[300]">
-      We operate on a No Win, No Fee basis, meaning you pay nothing unless we
-      succeed.
-     </p>
-    </div>
-
-    {/* Feature 3 */}
-    <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
-     <h3 className="text-lg font-semibold text-gray-900 mb-3">
-      Tailored Solutions for Every Client
-     </h3>
-     <p className="text-sm md:text-base text-gray-600 leading-relaxed font-[300]">
-      Each case is unique, and we provide personalized strategies to ensure the
-      best possible outcome for your claim.
-     </p>
-    </div>
-
-    {/* Feature 4 */}
-    <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
-     <h3 className="text-lg font-semibold text-gray-900  mb-3">
-      International Investor Support
-     </h3>
-     <p className="text-sm md:text-base text-gray-600 leading-relaxed font-[300]">
-      {
-       "Whether you're local or an international investor, we handle everything—from legal filings to negotiations—on your behalf."
-      }
-     </p>
+      {/* Feature 4 */}
+      <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
+       <h3 className="text-lg font-semibold text-gray-900  mb-3">
+        International Investor Support
+       </h3>
+       <p className="text-sm md:text-base leading-relaxed font-[300]">
+        {
+         "Whether you're local or an international investor, we handle everything—from legal filings to negotiations—on your behalf."
+        }
+       </p>
+      </div>
+     </div>
     </div>
    </div>
   </section>

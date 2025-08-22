@@ -89,21 +89,21 @@ export default function HowWeWorkSection() {
  }, []);
 
  return (
-  <section ref={sectionRef} className="md:pt-16 py-10 bg-white">
-   <div className="max-w-7xl mx-auto px-4">
+  <section ref={sectionRef} className="md:pt-16 md:pb-0 py-10 bg-white">
+   <div className="max-w-7xl mx-auto md:px-0 px-4">
     {/* Header */}
-    <div className="mb-14">
+    <div className="md:mb-20 mb-10">
      <div className="work-badge mb-4">
-      <span className="text-sm md:text-base font-semibold text-[#A58E50]">
+      <span className="text-sm font-inter md:text-base font-semibold text-[#A58E50]">
        How We Work
       </span>
      </div>
 
-     <h2 className="work-title text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 mb-6 ">
+     <h2 className="work-title text-2xl font-inter sm:text-3xl lg:text-4xl font-semibold text-gray-900 mb-6 ">
       Simple, Transparent Process to Recover Your Funds
      </h2>
 
-     <p className="work-description text-base sm:text-lg font-[300] text-gray-600 max-w-3xl leading-relaxed">
+     <p className="work-description text-base md:text-lg font-[300] text-gray-600 max-w-3xl leading-relaxed">
       {"We've"} done all the heavy lifting so you {"don't"} have to — get all
       the data you need to launch and grow your business faster.
      </p>
@@ -111,72 +111,80 @@ export default function HowWeWorkSection() {
    </div>
 
    {/* Content Grid */}
-   <div className="grid grid-cols-1 bg-[#FFFBF1] lg:grid-cols-2 gap-12 items-center">
+   <div className=" bg-[#FFFBF1] relative">
     {/* Left Image */}
     <div className="work-image">
-     <div className="relative overflow-hidden">
+     <div className="md:absolute left-0 overflow-hidden">
       <Image
        src="/funds-section-image.jpg"
        alt="Business consultation meeting"
        width={400}
        height={400}
-       className="w-full h-[400px] sm:h-[600px] object-cover"
+       className="h-[400px] md:h-[600px] md:w-[630px]  object-cover"
       />
       <div className="bg-[#000000] opacity-30 inset-0 absolute"></div>
       <div className="bg-[#F3F0E8] opacity-20 inset-0 absolute"></div>
      </div>
     </div>
+    <div className="max-w-7xl !mx-auto md:px-0 px-4 ">
+     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12  items-center">
+      {/* Right Content */}
+      <div></div>
+      <div className="md:space-y-6 space-y-6 grid grid-cols-1 md:gap-8 md:grid-cols-2 md:p-4  md:py-20">
+       {/* Feature 1 */}
+       <div className="work-feature">
+        <h3 className="text-lg font-semibold text-gray-900 md:mb-4 mb-2">
+         Free Case Evaluation
+        </h3>
+        <p className="text-sm md:text-base font-[300] text-gray-900 leading-relaxed">
+         Our experts will assess your situation and provide a clear roadmap for
+         recovery.
+        </p>
+       </div>
 
-    {/* Right Content */}
-    <div className="md:space-y-8 space-y-6 grid grid-cols-1 md:gap-8 md:grid-cols-2 p-4 md:p-16">
-     {/* Feature 1 */}
-     <div className="work-feature">
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-       Free Case Evaluation
-      </h3>
-      <p className="text-sm text-gray-600 leading-relaxed">
-       Our experts will assess your situation and provide a clear roadmap for
-       recovery.
-      </p>
-     </div>
+       {/* Feature 2 */}
+       <div className="work-feature">
+        <h3 className="text-lg font-semibold text-gray-900 md:mb-4 mb-2">
+         Legal and Financial Expertise
+        </h3>
+        <p className="text-sm md:text-base font-[300] text-gray-900 leading-relaxed">
+         We work with top legal teams to build a solid case and pursue your
+         claim.
+        </p>
+       </div>
 
-     {/* Feature 2 */}
-     <div className="work-feature">
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-       Legal and Financial Expertise
-      </h3>
-      <p className="text-sm text-gray-600 leading-relaxed">
-       We work with top legal teams to build a solid case and pursue your claim.
-      </p>
-     </div>
+       {/* Feature 3 */}
+       <div className="work-feature">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 md:mb-4">
+         No Win, No Fee
+        </h3>
+        <p className="text-sm md:text-base font-[300] text-gray-900 leading-relaxed">
+         You only pay if we successfully recover your lost investment—no hidden
+         fees or upfront costs.
+        </p>
+       </div>
 
-     {/* Feature 3 */}
-     <div className="work-feature">
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-       No Win, No Fee
-      </h3>
-      <p className="text-sm text-gray-600 leading-relaxed">
-       You only pay if we successfully recover your lost investment—no hidden
-       fees or upfront costs.
-      </p>
-     </div>
+       {/* Feature 4 */}
+       <div className="work-feature">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2 md:mb-4">
+         Fast & Effective Recovery
+        </h3>
+        <p className="text-sm md:text-base font-[300] text-gray-900 leading-relaxed">
+         We strive to resolve cases quickly, ensuring you get your funds back as
+         soon as possible.
+        </p>
+       </div>
 
-     {/* Feature 4 */}
-     <div className="work-feature">
-      <h3 className="text-lg font-semibold text-gray-900 mb-2">
-       Fast & Effective Recovery
-      </h3>
-      <p className="text-sm text-gray-600 leading-relaxed">
-       We strive to resolve cases quickly, ensuring you get your funds back as
-       soon as possible.
-      </p>
-     </div>
-
-     {/* CTA Button */}
-     <div className="work-button pt-4">
-      <Button size="lg" className="rounded-full px-10 py-6">
-       Schedule Your Consultation
-      </Button>
+       {/* CTA Button */}
+       <div className="work-button">
+        <Button
+         size="lg"
+         className="rounded-full bg-[#A58E50] font-semibold md:text-base px-10 py-6"
+        >
+         Schedule Your Consultation
+        </Button>
+       </div>
+      </div>
      </div>
     </div>
    </div>

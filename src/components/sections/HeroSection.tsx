@@ -68,16 +68,16 @@ export default function HeroSection() {
  return (
   <section
    ref={heroRef}
-   className="relative md:min-h-screen bg-cover bg-center bg-no-repeat"
+   className="relative md:min-h-screen bg-cover bg-center bg-no-repeat pt-4"
    style={{
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/hero-image.jpg')`,
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('/hero-image.jpg')`,
    }}
   >
    {/* Header Navigation */}
    <Header />
    {/* Hero Content */}
-   <div className="relative z-10 px-4 sm:px-6 lg:px-10 pt-8 md:pt-10 pb-8 md:pb-10">
-    <div className="max-w-7xl mx-auto">
+   <div className="relative z-10 pt-8 md:pt-20 pb-8 md:pb-10">
+    <div className="max-w-7xl mx-auto md:px-0  px-4 ">
      <div className="max-w-4xl">
       {/* Badge */}
       <div className="hero-badge inline-block mb-6">
@@ -87,10 +87,7 @@ export default function HeroSection() {
       </div>
 
       {/* Main Headline */}
-      <h1
-       style={{ fontFamily: "inherit" }}
-       className="hero-title text-3xl sm:text-4xl lg:text-6xl font-semibold text-white leading-tight mb-6"
-      >
+      <h1 className="hero-title text-3xl font-inter sm:text-4xl lg:text-6xl font-medium  text-white leading-tight tracking-tighter mb-6">
        Recover Your Lost Property
        <br />
        Investments in <span className="italic">UAE</span>
@@ -105,39 +102,42 @@ export default function HeroSection() {
 
       {/* CTA Button */}
       <div className="hero-cta mb-16">
-       <Button size="lg" className="rounded-full md:h-12">
+       <Button
+        size="lg"
+        className="rounded-full md:px-10 font-semibold md:text-base md:h-12"
+       >
         Schedule Your Consultation
        </Button>
       </div>
      </div>
-    </div>
 
-    {/* Bottom Cards */}
-    <div className="max-w-3xl ms-auto mt-10">
-     <div className="flex md:grid md:grid-cols-3 gap-2 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide">
-      {/* Card 1 */}
-      <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px] snap-center shrink-0">
-       <h3 className="text-white font-semibold mb-3">Lost Your Investment?</h3>
-       <p className="text-gray-300 text-sm leading-relaxed">
-        We recover funds from failed property projects in Dubai—hassle-free.
-       </p>
-      </div>
+     {/* Bottom Cards */}
+     <div className="max-w-max ms-auto mt-10">
+      <div className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide">
+       {/* Card 1 */}
+       <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px] snap-center shrink-0">
+        <h3 className="text-white font-semibold mb-3">Lost Your Investment?</h3>
+        <p className="text-gray-300 text-sm leading-relaxed">
+         We recover funds from failed property projects in Dubai—hassle-free.
+        </p>
+       </div>
 
-      {/* Card 2 */}
-      <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px] snap-center shrink-0">
-       <h3 className="text-white font-semibold mb-3">No Win, No Fee</h3>
-       <p className="text-gray-300 text-sm leading-relaxed">
-        Only pay if we succeed in getting your money back. Risk-free service!
-       </p>
-      </div>
+       {/* Card 2 */}
+       <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px] snap-center shrink-0">
+        <h3 className="text-white font-semibold mb-3">No Win, No Fee</h3>
+        <p className="text-gray-300 text-sm leading-relaxed">
+         Only pay if we succeed in getting your money back. Risk-free service!
+        </p>
+       </div>
 
-      {/* Card 3 */}
-      <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px]   snap-center shrink-0">
-       <h3 className="text-white font-semibold mb-3">Expert Legal Help</h3>
-       <p className="text-gray-300 text-sm leading-relaxed">
-        Our team navigates Dubai&apos;s complex legal system to reclaim your
-        lost funds.
-       </p>
+       {/* Card 3 */}
+       <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px]   snap-center shrink-0">
+        <h3 className="text-white font-semibold mb-3">Expert Legal Help</h3>
+        <p className="text-gray-300 text-sm leading-relaxed">
+         Our team navigates Dubai&apos;s complex legal system to reclaim your
+         lost funds.
+        </p>
+       </div>
       </div>
      </div>
     </div>

@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
 
-// ✅ Montserrat font setup
+// Montserrat font setup
 const montserrat = Montserrat({
  subsets: ["latin"],
  variable: "--font-montserrat",
+ display: "swap",
+});
+
+// Inter font setup
+const inter = Inter({
+ subsets: ["latin"],
+ variable: "--font-inter",
  display: "swap",
 });
 
@@ -52,13 +59,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
  children,
-}: Readonly<{
- children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
  return (
   <html lang="en">
    <body
-    className={`${montserrat.variable} ${montserrat.className} font-sans antialiased`}
+    className={`
+          ${montserrat.variable} 
+          ${inter.variable} 
+          font-sans antialiased
+          ${montserrat.className}
+        `}
    >
     {children}
     <Footer />

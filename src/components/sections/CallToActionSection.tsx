@@ -68,19 +68,16 @@ export default function CallToActionSection() {
  }, []);
 
  return (
-  <section
-   ref={sectionRef}
-   className="md:py-20 py-10 px-4 sm:px-6 lg:px-8 bg-primary relative"
-  >
-   <div className="max-w-7xl mx-auto">
-    <div className="md:grid flex flex-col-reverse md:grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+  <section ref={sectionRef} className="md:py-16 py-10 bg-[#A58E50] relative">
+   <div className="max-w-7xl mx-auto px-4 md:px-0">
+    <div className="md:grid flex flex-col-reverse md:grid-cols-1 lg:grid-cols-2 gap-8 md:gap-0  items-center">
      {/* Left Content */}
      <div className="space-y-6">
-      <h2 className="cta-title text-xl sm:text-2xl lg:text-4xl font-semibold text-white leading-tight">
+      <h2 className="cta-title text-xl font-inter sm:text-2xl lg:text-4xl font-semibold text-white leading-tight">
        Are You a Victim of a Failed Property Investment?
       </h2>
 
-      <p className="cta-description text-sm sm:text-base text-white/90 leading-relaxed max-w-2xl">
+      <p className="cta-description text-sm sm:text-base font-medium text-white/90 leading-relaxed max-w-3xl">
        We specialize in recovering investments lost to fraudulent, canceled, or
        failed property projects in Dubai. With our experienced legal and
        financial team, we offer a streamlined solution to help you get your
@@ -91,7 +88,7 @@ export default function CallToActionSection() {
       <div className="cta-button pt-2">
        <Button
         size="lg"
-        className="bg-white py-6 text-gray-800 hover:bg-gray-50 px-8  text-base font-semibold rounded-full transition-all duration-300  hover:shadow-xl"
+        className="bg-white py-6  text-gray-800 hover:bg-gray-50 px-8 md:px-10  text-base font-semibold rounded-full transition-all duration-300  hover:shadow-xl"
        >
         Schedule Your Consultation
        </Button>
@@ -104,11 +101,10 @@ export default function CallToActionSection() {
        <Image
         src="/victim-section-image.jpg"
         alt="Dubai construction and development projects"
-        className="w-full h-[300px] sm:h-[400px] lg:h-[450px] object-cover"
+        className="w-full h-[300px] sm:h-[300px] lg:h-[420px] object-cover"
         width={400}
         height={400}
        />
-       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
       </div>
      </div>
     </div>

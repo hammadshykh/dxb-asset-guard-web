@@ -61,16 +61,16 @@ const Header = () => {
 
  return (
   <>
-   <header className="relative z-50 px-4 sm:px-6 lg:px-8 py-6">
-    <div className="max-w-7xl mx-auto flex items-center justify-between gap-6 md:gap-0">
+   <header className="relative z-50">
+    <div className="max-w-7xl px-4 md:px-0 mx-auto flex items-center justify-between gap-6 md:gap-0">
      {/* Logo */}
-     <div className="relative">
+     <div className="relative -ms-4">
       <Image src="/logo.svg" alt="Logo" width={200} height={200} />
      </div>
 
      {/* Desktop Navigation */}
-     <div className="backdrop-blur-md bg-white/5 hidden md:flex items-center max-w-4xl justify-between px-10 py-5 rounded-full w-full">
-      <nav className="hidden md:flex items-center space-x-8">
+     <div className="backdrop-blur-md  h-[72px] bg-white/5 hidden md:flex items-center max-w-5xl justify-between ps-10 pe-2 rounded-full w-full">
+      <nav className="hidden md:flex items-center space-x-10">
        {navLinks.map((link) => (
         <a
          key={link.label}
@@ -83,7 +83,10 @@ const Header = () => {
       </nav>
 
       {/* Desktop CTA Button */}
-      <Button size="lg" className="rounded-full md:h-12">
+      <Button
+       size="lg"
+       className="rounded-full text-base font-semibold px-10 md:h-[54px]"
+      >
        Schedule Your Consultation
       </Button>
      </div>

@@ -81,7 +81,7 @@ const Header = () => {
   const handleScroll = () => {
    if (window.scrollY > window.innerHeight * 0.8) {
     showHeader();
-   } else if (window.scrollY > 100) {
+   } else if (window.scrollY > 150) {
     hideHeader();
    }
   };

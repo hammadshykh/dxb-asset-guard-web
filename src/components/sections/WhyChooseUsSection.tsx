@@ -24,7 +24,7 @@ export default function WhyChooseUsSection() {
 
    tl
     .from(".why-badge", {
-     duration: 0.6,
+     duration: 0.9,
      y: 20,
      opacity: 0,
      ease: "power3.out",
@@ -42,7 +42,7 @@ export default function WhyChooseUsSection() {
     .from(
      ".why-description",
      {
-      duration: 0.8,
+      duration: 0.3,
       y: 20,
       opacity: 0,
       ease: "power3.out",
@@ -54,9 +54,9 @@ export default function WhyChooseUsSection() {
      ".why-feature.left",
      {
       x: -40,
-      scale: 0.85,
+      scale: 0.8,
       opacity: 0,
-      duration: 1.2,
+      duration: 1,
       ease: "back.out(1.7)",
       stagger: 0.2,
      },
@@ -67,7 +67,7 @@ export default function WhyChooseUsSection() {
      ".why-feature.right",
      {
       x: 40,
-      scale: 0.85,
+      scale: 0.8,
       opacity: 0,
       duration: 1.2,
       ease: "back.out(1.7)",

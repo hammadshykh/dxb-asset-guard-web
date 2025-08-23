@@ -27,6 +27,7 @@ const Header = () => {
  const [isOpen, setIsOpen] = useState(false);
  const headerRef = useRef<HTMLDivElement>(null);
  const menuItemsRef = useRef<HTMLAnchorElement[]>([]);
+ const [showHeader, setShowHeader] = useState(false);
 
  const addToRefs = (el: HTMLAnchorElement) => {
   if (el && !menuItemsRef.current.includes(el)) {
@@ -81,7 +82,9 @@ const Header = () => {
   const handleScroll = () => {
    if (window.scrollY > window.innerHeight * 0.8) {
     showHeader();
+    setShowHeader(true);
    } else if (window.scrollY > 150) {
+    setShowHeader(false);
     hideHeader();
    }
   };
@@ -188,22 +191,24 @@ const Header = () => {
    {/* Sticky Header (appears only after scroll) */}
    <header
     ref={headerRef}
-    className="fixed top-0 left-0 w-full z-50 bg-primary shadow-md"
+    className={` fixed top-5 w-full left-0 z-50 ${
+     showHeader ? "opacity-100" : "opacity-0"
+    } `}
    >
-    <div className="max-w-7xl px-4 md:px-0 mx-auto flex items-center justify-between gap-6 md:gap-0 h-[72px]">
-     {/* Logo */}
-     <div className="relative -ms-2">
-      <Image src="/logo.svg" alt="Logo" width={120} height={120} />
-     </div>
-
+    <div className="max-w-5xl px-4 md:px-0 mx-auto flex items-center justify-between gap-6 md:gap-0 h-[72px]">
      {/* Desktop Navigation */}
-     <div className="hidden md:flex items-center justify-between ps-8 pe-2 rounded-full w-full">
+     <div className="backdrop-blur-md h-[72px] bg-primary shadow-2xl   hidden md:flex items-center max-w-5xl justify-between ps-10 pe-2 rounded-full w-full">
+      {/* Logo */}
+      <div className="relative -ms-2">
+       <Image src="/logo.svg" alt="Logo" width={120} height={120} />
+      </div>
+
       <nav className="flex items-center space-x-10">
        {navLinks.map((link) => (
         <Link
          key={link.label}
          href={link.href}
-         className="text-black hover:text-white transition-colors font-medium duration-200 text-sm"
+         className="text-white hover:text-white/60 transition-colors font-medium duration-200 text-sm"
         >
          {link.label}
         </Link>

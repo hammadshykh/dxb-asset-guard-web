@@ -110,6 +110,18 @@
  font-family: var(--font-inter);
 }
 
+/* Apply only where overflow-auto is used */
+.overflow-auto {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Chrome, Safari and Opera */
+.overflow-auto::-webkit-scrollbar {
+  display: none;
+}
+
+
 .dark {
  --background: oklch(0.145 0 0);
  --foreground: oklch(0.985 0 0);

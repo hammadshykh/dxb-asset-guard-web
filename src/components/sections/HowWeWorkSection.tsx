@@ -27,7 +27,7 @@ export default function HowWeWorkSection() {
 
    tl
     .from(".work-badge", {
-     duration: 0.6,
+     duration: 0.5,
      y: 20,
      opacity: 0,
      ease: "power3.out",
@@ -35,7 +35,7 @@ export default function HowWeWorkSection() {
     .from(
      ".work-title",
      {
-      duration: 0.8,
+      duration: 0.5,
       y: 30,
       opacity: 0,
       ease: "power3.out",
@@ -45,7 +45,7 @@ export default function HowWeWorkSection() {
     .from(
      ".work-description",
      {
-      duration: 0.8,
+      duration: 0.5,
       y: 20,
       opacity: 0,
       ease: "power3.out",
@@ -55,7 +55,7 @@ export default function HowWeWorkSection() {
     .from(
      ".work-image",
      {
-      duration: 1,
+      duration: 0.6,
       x: -50,
       opacity: 0,
       ease: "power1.in",

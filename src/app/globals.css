@@ -41,12 +41,12 @@
  --radius-sm: calc(var(--radius) - 4px);
  --radius-md: calc(var(--radius) - 2px);
  --radius-lg: var(--radius);
- --radius-xl: calc(var(--radius) + 4px); 
+ --radius-xl: calc(var(--radius) + 4px);
 }
 
 :root {
  --font-montserrat: "Montserrat", sans-serif;
- --font-inter: "Inter", sans-serif; 
+ --font-inter: "Inter", sans-serif;
  --radius: 0.625rem;
 
  --background: oklch(1 0 0);
@@ -112,15 +112,14 @@
 
 /* Apply only where overflow-auto is used */
 .overflow-auto {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+ -ms-overflow-style: none; /* IE and Edge */
+ scrollbar-width: none; /* Firefox */
 }
 
 /* Chrome, Safari and Opera */
 .overflow-auto::-webkit-scrollbar {
-  display: none;
+ display: none;
 }
-
 
 .dark {
  --background: oklch(0.145 0 0);
@@ -159,10 +158,14 @@
 @layer base {
  * {
   @apply border-border outline-ring/50;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  
  }
+ .overflow-auto::-webkit-scrollbar {
+ display: none;
+}
  body {
   @apply bg-background text-foreground;
  }
 }
-
-

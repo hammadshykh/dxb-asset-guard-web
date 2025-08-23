@@ -4,7 +4,7 @@ import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
 import { ReactLenis } from "@/lib/lenis";
-import LoadingScreen from "@/components/LoadingScreen";
+// import LoadingScreen from "@/components/LoadingScreen";
 
 // Montserrat font setup
 const montserrat = Montserrat({

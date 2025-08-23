@@ -5,14 +5,6 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { gsap } from "gsap";
-import {
- Drawer,
- DrawerClose,
- DrawerContent,
- DrawerHeader,
- DrawerTitle,
- DrawerTrigger,
-} from "@/components/ui/drawer";
 import Link from "next/link";
 
 const navLinks = [
@@ -26,77 +18,97 @@ const navLinks = [
 const Header = () => {
  const [isOpen, setIsOpen] = useState(false);
  const headerRef = useRef<HTMLDivElement>(null);
- const menuItemsRef = useRef<HTMLAnchorElement[]>([]);
  const [showHeader, setShowHeader] = useState(false);
 
- const addToRefs = (el: HTMLAnchorElement) => {
-  if (el && !menuItemsRef.current.includes(el)) {
-   menuItemsRef.current.push(el);
-  }
- };
+ // Refs for mobile sidebar
+ const overlayRef = useRef<HTMLDivElement>(null);
+ const sidebarRef = useRef<HTMLDivElement>(null);
+ const menuRef = useRef<HTMLDivElement>(null);
 
- // Animate drawer links
+ // Init hidden state for sidebar + overlay so GSAP can animate in
  useEffect(() => {
-  if (isOpen && menuItemsRef.current.length > 0) {
+  if (overlayRef.current && sidebarRef.current) {
+   gsap.set(overlayRef.current, { autoAlpha: 0 });
+   gsap.set(sidebarRef.current, { autoAlpha: 0, scale: 0.95 });
+  }
+ }, []);
+
+ // Sidebar open/close animation (simple fade + scale)
+ useEffect(() => {
+  if (!overlayRef.current || !sidebarRef.current) return;
+
+  if (isOpen) {
+   // lock scroll
+   document.body.style.overflow = "hidden";
+
+   gsap.to(overlayRef.current, {
+    autoAlpha: 1,
+    duration: 0.2,
+    ease: "power1.out",
+   });
+
+   gsap.to(sidebarRef.current, {
+    autoAlpha: 1,
+    scale: 1,
+    duration: 0.35,
+    ease: "power3.out",
+   });
    gsap.fromTo(
-    menuItemsRef.current,
-    { y: -30, opacity: 0 },
-    {
-     y: 0,
-     opacity: 1,
-     duration: 0.6,
-     stagger: 0.1,
-     ease: "power3.out",
-     delay: 0.2,
-    }
+    menuRef.current,
+    { y: 30, opacity: 0 },
+    { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, delay: 0.2 }
    );
+  } else {
+   // unlock scroll
+   document.body.style.overflow = "";
+
+   gsap.to(sidebarRef.current, {
+    autoAlpha: 0,
+    scale: 0.96,
+    duration: 0.25,
+    ease: "power2.in",
+   });
+
+   gsap.to(overlayRef.current, {
+    autoAlpha: 0,
+    duration: 0.2,
+    ease: "power1.in",
+   });
   }
  }, [isOpen]);
 
- // Sticky Header animation on scroll
+ // Sticky header show/hide after hero
  useEffect(() => {
   const headerEl = headerRef.current;
-
   if (!headerEl) return;
 
-  gsap.set(headerEl, { y: -100, opacity: 0 }); // sticky header hidden by default
+  gsap.set(headerEl, { y: -100, opacity: 0 });
 
-  const showHeader = () => {
-   gsap.to(headerEl, {
-    y: 0,
-    opacity: 1,
-    duration: 0.6,
-    ease: "power3.out",
-   });
-  };
+  const show = () =>
+   gsap.to(headerEl, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" });
+  const hide = () =>
+   gsap.to(headerEl, { y: -100, opacity: 0, duration: 0.4, ease: "power3.in" });
 
-  const hideHeader = () => {
-   gsap.to(headerEl, {
-    y: -100,
-    opacity: 0,
-    duration: 0.4,
-    ease: "power3.in",
-   });
-  };
-
-  const handleScroll = () => {
+  const onScroll = () => {
    if (window.scrollY > window.innerHeight * 0.8) {
-    showHeader();
     setShowHeader(true);
+    show();
    } else if (window.scrollY > 150) {
     setShowHeader(false);
-    hideHeader();
+    hide();
+   } else {
+    setShowHeader(false);
+    hide();
    }
   };
 
-  window.addEventListener("scroll", handleScroll);
-
-  return () => window.removeEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", onScroll);
+  return () => window.removeEventListener("scroll", onScroll);
  }, []);
 
  return (
   <>
-   {/* Default Header (always visible on page load) */}
+   {/* Default Header (visible on load) */}
    <header className="relative z-40">
     <div className="max-w-7xl px-4 md:px-0 mx-auto flex items-center justify-between gap-6 md:gap-0">
      {/* Logo */}
@@ -104,7 +116,7 @@ const Header = () => {
       <Image src="/logo.svg" alt="Logo" width={200} height={200} />
      </div>
 
-     {/* Desktop Navigation */}
+     {/* Desktop nav */}
      <div className="backdrop-blur-md h-[72px] bg-white/5 hidden md:flex items-center max-w-5xl justify-between ps-10 pe-2 rounded-full w-full">
       <nav className="hidden md:flex items-center space-x-10">
        {navLinks.map((link) => (
@@ -117,8 +129,6 @@ const Header = () => {
         </Link>
        ))}
       </nav>
-
-      {/* Desktop CTA Button */}
       <Button
        size="lg"
        className="rounded-full text-base font-semibold px-10 md:h-[54px]"
@@ -127,82 +137,33 @@ const Header = () => {
       </Button>
      </div>
 
-     {/* Mobile Menu and CTA */}
+     {/* Mobile: open sidebar button */}
      <div className="md:hidden flex items-center gap-3">
-      <Drawer open={isOpen} onOpenChange={setIsOpen}>
-       <DrawerTrigger asChild>
-        <button
-         className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
-         aria-label="Toggle mobile menu"
-        >
-         <Menu className="w-6 h-6" />
-        </button>
-       </DrawerTrigger>
-       <DrawerContent className="bg-slate-900/95 backdrop-blur-lg border-slate-700 text-white">
-        <DrawerHeader className="border-b border-slate-700">
-         <div className="flex items-center justify-between">
-          <DrawerTitle className="text-white text-lg font-semibold">
-           Navigation Menu
-          </DrawerTitle>
-          <DrawerClose asChild>
-           <button
-            className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
-            aria-label="Close menu"
-           >
-            <X className="w-5 h-5" />
-           </button>
-          </DrawerClose>
-         </div>
-        </DrawerHeader>
-
-        {/* Navigation Links */}
-        <div className="px-6 py-8">
-         <nav className="space-y-6">
-          {navLinks.map((link, index) => (
-           <a
-            key={link.label}
-            ref={addToRefs}
-            href={link.href}
-            onClick={() => setIsOpen(false)}
-            className="block text-white hover:text-yellow-400 transition-colors duration-200 text-lg font-medium py-3 border-b border-slate-700/50 last:border-b-0"
-           >
-            {link.label}
-           </a>
-          ))}
-         </nav>
-        </div>
-
-        {/* Mobile CTA Button */}
-        <div className="px-6 pb-8 pt-4 border-t border-slate-700">
-         <Button
-          size="lg"
-          className="w-full rounded-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold"
-          onClick={() => setIsOpen(false)}
-         >
-          Schedule Your Consultation
-         </Button>
-        </div>
-       </DrawerContent>
-      </Drawer>
+      <button
+       className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+       aria-label="Toggle mobile menu"
+       aria-expanded={isOpen}
+       onClick={() => setIsOpen(true)}
+      >
+       <Menu className="w-6 h-6" />
+      </button>
      </div>
     </div>
    </header>
 
-   {/* Sticky Header (appears only after scroll) */}
+   {/* Sticky Header (after scroll) */}
    <header
     ref={headerRef}
-    className={` fixed top-5 w-full left-0 z-50 ${
+    className={`fixed top-5 w-full left-0 z-50 ${
      showHeader ? "opacity-100" : "opacity-0"
-    } `}
+    }`}
    >
     <div className="max-w-5xl px-4 md:px-0 mx-auto flex items-center justify-between gap-6 md:gap-0 h-[72px]">
-     {/* Desktop Navigation */}
-     <div className="backdrop-blur-md h-[72px] bg-primary shadow-2xl   hidden md:flex items-center max-w-5xl justify-between ps-10 pe-2 rounded-full w-full">
-      {/* Logo */}
+     {/* Desktop nav */}
+     <div className="backdrop-blur-md h-[72px] bg-primary shadow-2xl hidden md:flex items-center max-w-5xl justify-between ps-10 pe-2 rounded-full w-full">
       <div className="relative -ms-2">
        <Image src="/logo.svg" alt="Logo" width={120} height={120} />
       </div>
-
       <nav className="flex items-center space-x-10">
        {navLinks.map((link) => (
         <Link
@@ -214,8 +175,6 @@ const Header = () => {
         </Link>
        ))}
       </nav>
-
-      {/* Desktop CTA Button */}
       <Button
        size="lg"
        className="rounded-full text-base font-semibold px-8 md:h-[50px] bg-black text-white hover:bg-gray-800"
@@ -224,66 +183,73 @@ const Header = () => {
       </Button>
      </div>
 
-     {/* Mobile Menu */}
+     {/* Mobile: open sidebar button (sticky state) */}
      <div className="md:hidden flex items-center gap-3">
-      <Drawer open={isOpen} onOpenChange={setIsOpen}>
-       <DrawerTrigger asChild>
-        <button
-         className="text-black p-2 hover:bg-black/10 rounded-lg transition-colors duration-200"
-         aria-label="Toggle mobile menu"
-        >
-         <Menu className="w-6 h-6" />
-        </button>
-       </DrawerTrigger>
-       <DrawerContent className="bg-white border-t border-gray-200 text-black">
-        <DrawerHeader className="border-b border-gray-200">
-         <div className="flex items-center justify-between">
-          <DrawerTitle className="text-lg font-semibold">
-           Navigation Menu
-          </DrawerTitle>
-          <DrawerClose asChild>
-           <button
-            className="p-2 hover:bg-black/10 rounded-lg transition-colors duration-200"
-            aria-label="Close menu"
-           >
-            <X className="w-5 h-5" />
-           </button>
-          </DrawerClose>
-         </div>
-        </DrawerHeader>
-
-        {/* Navigation Links */}
-        <div className="px-6 py-8">
-         <nav className="space-y-6">
-          {navLinks.map((link, index) => (
-           <Link
-            key={link.label}
-            ref={addToRefs}
-            href={link.href}
-            onClick={() => setIsOpen(false)}
-            className="block hover:text-primary transition-colors duration-200 text-lg font-medium py-3 border-b border-gray-200 last:border-b-0"
-           >
-            {link.label}
-           </Link>
-          ))}
-         </nav>
-        </div>
-
-        {/* Mobile CTA Button */}
-        <div className="px-6 pb-8 pt-4 border-t border-gray-200">
-         <Button
-          size="lg"
-          className="w-full rounded-full bg-black hover:bg-gray-800 text-white font-semibold"
-          onClick={() => setIsOpen(false)}
-         >
-          Schedule Your Consultation
-         </Button>
-        </div>
-       </DrawerContent>
-      </Drawer>
+      <button
+       className="text-black p-2 hover:bg-black/10 rounded-lg transition-colors duration-200"
+       aria-label="Toggle mobile menu"
+       aria-expanded={isOpen}
+       onClick={() => setIsOpen(true)}
+      >
+       <Menu className="w-6 h-6" />
+      </button>
      </div>
     </div>
    </header>
+
+   {/* Mobile Sidebar Overlay + Panel (fade+scale) */}
+   <div
+    ref={overlayRef}
+    className={`fixed inset-0 w-full h-full z-[70] md:hidden ${
+     isOpen ? "pointer-events-auto" : "pointer-events-none"
+    }`}
+    onClick={() => setIsOpen(false)}
+   >
+    <div className="absolute inset-0 bg-black/50 backdrop-blur-md" />
+
+    {/* Centered transparent panel */}
+    <div
+     ref={sidebarRef}
+     className="absolute inset-0 flex items-center justify-center p-6"
+     onClick={(e) => e.stopPropagation()}
+    >
+     <div className="w-full mx-4 rounded-2xl   p-6 ">
+      <div className="flex items-center justify-between mb-6">
+       <Image src="/logo.svg" alt="Logo" width={140} height={140} />
+       <button
+        aria-label="Close menu"
+        className="p-2 rounded-lg hover:bg-white/10 transition"
+        onClick={() => setIsOpen(false)}
+       >
+        <X className="w-6 h-6 text-white" />
+       </button>
+      </div>
+
+      <nav ref={menuRef} className="flex flex-col items-center gap-5 py-2">
+       {navLinks.map((link) => (
+        <Link
+         key={link.label}
+         href={link.href}
+         onClick={() => setIsOpen(false)}
+         className="text-white text-lg font-medium hover:text-primary transition-colors"
+        >
+         {link.label}
+        </Link>
+       ))}
+      </nav>
+
+      <div className="mt-8">
+       <Button
+        size="lg"
+        className="w-full rounded-full bg-primary text-black font-semibold hover:opacity-90"
+        onClick={() => setIsOpen(false)}
+       >
+        Schedule Your Consultation
+       </Button>
+      </div>
+     </div>
+    </div>
+   </div>
   </>
  );
 };

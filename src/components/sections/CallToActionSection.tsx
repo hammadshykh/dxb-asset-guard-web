@@ -102,8 +102,8 @@ export default function CallToActionSection() {
      </div>
 
      {/* Right Image */}
-     <div className="md:absolute right-0 top-0">
-      <div className="relative overflow-hidden shadow-2xl rounded-lg">
+     <div className="md:absolute right-0 -top-1">
+      <div className="relative overflow-hidden shadow-2xl ">
        <Image
         src="/victim-section-image.jpg"
         alt="Dubai construction and development projects"

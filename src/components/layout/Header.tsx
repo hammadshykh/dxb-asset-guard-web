@@ -78,34 +78,44 @@ const Header = () => {
  }, [isOpen]);
 
  // Sticky header show/hide after hero
+ // Sticky Header animation on scroll
  useEffect(() => {
   const headerEl = headerRef.current;
   if (!headerEl) return;
 
-  gsap.set(headerEl, { y: -100, opacity: 0 });
+  gsap.set(headerEl, { y: -100, opacity: 0 }); // sticky header hidden
 
-  const show = () =>
-   gsap.to(headerEl, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" });
-  const hide = () =>
-   gsap.to(headerEl, { y: -100, opacity: 0, duration: 0.4, ease: "power3.in" });
+  const showHeader = () => {
+   gsap.to(headerEl, {
+    y: 0,
+    opacity: 1,
+    duration: 0.6,
+    ease: "power3.out",
+   });
+  };
 
-  const onScroll = () => {
+  const hideHeader = () => {
+   gsap.to(headerEl, {
+    y: -100,
+    opacity: 0,
+    duration: 0.4,
+    ease: "power3.in",
+   });
+  };
+
+  const handleScroll = () => {
    if (window.scrollY > window.innerHeight * 0.8) {
+    showHeader();
     setShowHeader(true);
-    show();
-   } else if (window.scrollY > 150) {
+   } else if (window.scrollY > 300) {
     setShowHeader(false);
-    hide();
-   } else {
-    setShowHeader(false);
-    hide();
+    hideHeader();
    }
   };
 
-  window.addEventListener("scroll", onScroll);
-  return () => window.removeEventListener("scroll", onScroll);
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
  }, []);
-
  return (
   <>
    {/* Default Header (visible on load) */}

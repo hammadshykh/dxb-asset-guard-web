@@ -149,14 +149,25 @@ const Header = () => {
 
      {/* Mobile: open sidebar button */}
      <div className="md:hidden flex items-center gap-3">
-      <button
-       className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
-       aria-label="Toggle mobile menu"
-       aria-expanded={isOpen}
-       onClick={() => setIsOpen(true)}
-      >
-       <Menu className="w-6 h-6" />
-      </button>
+      {isOpen ? (
+       <button
+        className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+        aria-label="Toggle mobile menu"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen(false)}
+       >
+        <X className="w-6 h-6 text-white" />
+       </button>
+      ) : (
+       <button
+        className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+        aria-label="Toggle mobile menu"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen(true)}
+       >
+        <Menu className="w-6 h-6 text-white" />
+       </button>
+      )}
      </div>
     </div>
    </header>
@@ -164,7 +175,7 @@ const Header = () => {
    {/* Sticky Header (after scroll) */}
    <header
     ref={headerRef}
-    className={`fixed top-5 w-full left-0 z-[80] ${
+    className={`fixed md:block hidden top-5 w-full left-0 z-[80] ${
      showHeader ? "opacity-100" : "opacity-0"
     }`}
    >

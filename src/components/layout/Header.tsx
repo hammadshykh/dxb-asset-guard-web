@@ -164,17 +164,17 @@ const Header = () => {
    {/* Sticky Header (after scroll) */}
    <header
     ref={headerRef}
-    className={`fixed top-5 w-full left-0 z-50 ${
+    className={`fixed top-5 w-full left-0 z-[80] ${
      showHeader ? "opacity-100" : "opacity-0"
     }`}
    >
-    <div className="max-w-5xl px-4 md:px-0 mx-auto flex items-center justify-between gap-6 md:gap-0 h-[72px]">
+    <div className="md:max-w-5xl px-4 md:px-0 mx-auto flex items-center justify-between gap-6 md:gap-0 h-[72px]">
      {/* Desktop nav */}
-     <div className="backdrop-blur-md h-[72px] bg-primary shadow-2xl hidden md:flex items-center max-w-5xl justify-between ps-10 pe-2 rounded-full w-full">
+     <div className="backdrop-blur-md h-[72px] bg-primary shadow-2xl items-center flex md:max-w-5xl justify-between ps-10 pe-2 rounded-full w-full">
       <div className="relative -ms-2">
        <Image src="/logo.svg" alt="Logo" width={120} height={120} />
       </div>
-      <nav className="flex items-center space-x-10">
+      <nav className="items-center hidden md:flex  space-x-10">
        {navLinks.map((link) => (
         <Link
          key={link.label}
@@ -187,23 +187,34 @@ const Header = () => {
       </nav>
       <Button
        size="lg"
-       className="rounded-full text-base font-semibold px-8 md:h-[50px] bg-black text-white hover:bg-gray-800"
+       className="rounded-full md:block hidden text-xs md:text-base md:font-semibold px-2 md:h-[50px] bg-black text-white hover:bg-gray-800"
       >
        Schedule Your Consultation
       </Button>
+      <div className="md:hidden flex items-center gap-3">
+       {isOpen ? (
+        <button
+         className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+         aria-label="Toggle mobile menu"
+         aria-expanded={isOpen}
+         onClick={() => setIsOpen(false)}
+        >
+         <X className="w-6 h-6 text-white" />
+        </button>
+       ) : (
+        <button
+         className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+         aria-label="Toggle mobile menu"
+         aria-expanded={isOpen}
+         onClick={() => setIsOpen(true)}
+        >
+         <Menu className="w-6 h-6 text-white" />
+        </button>
+       )}
+      </div>
      </div>
 
-     {/* Mobile: open sidebar button (sticky state) */}
-     <div className="md:hidden flex items-center gap-3">
-      <button
-       className="text-black p-2 hover:bg-black/10 rounded-lg transition-colors duration-200"
-       aria-label="Toggle mobile menu"
-       aria-expanded={isOpen}
-       onClick={() => setIsOpen(true)}
-      >
-       <Menu className="w-6 h-6" />
-      </button>
-     </div>
+     {/* Mobile: open sidebar button */}
     </div>
    </header>
 
@@ -211,7 +222,9 @@ const Header = () => {
    <div
     ref={overlayRef}
     className={`fixed inset-0 w-full h-full z-[70] md:hidden ${
-     isOpen ? "pointer-events-auto" : "pointer-events-none"
+     isOpen
+      ? "pointer-events-auto opacity-100"
+      : "pointer-events-none opacity-0"
     }`}
     onClick={() => setIsOpen(false)}
    >
@@ -223,18 +236,7 @@ const Header = () => {
      className="absolute inset-0 flex items-center justify-center p-6"
      onClick={(e) => e.stopPropagation()}
     >
-     <div className="w-full mx-4 rounded-2xl   p-6 ">
-      <div className="flex items-center justify-between mb-6">
-       <Image src="/logo.svg" alt="Logo" width={140} height={140} />
-       <button
-        aria-label="Close menu"
-        className="p-2 rounded-lg hover:bg-white/10 transition"
-        onClick={() => setIsOpen(false)}
-       >
-        <X className="w-6 h-6 text-white" />
-       </button>
-      </div>
-
+     <div className="w-full mx-4 rounded-2xl p-6 ">
       <nav ref={menuRef} className="flex flex-col items-center gap-5 py-2">
        {navLinks.map((link) => (
         <Link

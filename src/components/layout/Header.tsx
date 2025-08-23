@@ -175,7 +175,7 @@ const Header = () => {
    {/* Sticky Header (after scroll) */}
    <header
     ref={headerRef}
-    className={`fixed md:block hidden top-5 w-full left-0 z-[80] ${
+    className={`fixed md:block hid top-5 w-full left-0 z-[80] ${
      showHeader ? "opacity-100" : "opacity-0"
     }`}
    >
@@ -250,25 +250,27 @@ const Header = () => {
      <div className="w-full mx-4 rounded-2xl p-6">
       <div className="flex items-center justify-between gap-3">
        <div></div>
-       {isOpen ? (
-        <button
-         className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
-         aria-label="Toggle mobile menu"
-         aria-expanded={isOpen}
-         onClick={() => setIsOpen(false)}
-        >
-         <X className="w-6 h-6 text-white" />
-        </button>
-       ) : (
-        <button
-         className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
-         aria-label="Toggle mobile menu"
-         aria-expanded={isOpen}
-         onClick={() => setIsOpen(true)}
-        >
-         <Menu className="w-6 h-6 text-white" />
-        </button>
-       )}
+       <div className="absolute top-15 right-5">
+        {isOpen ? (
+         <button
+          className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+          aria-label="Toggle mobile menu"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen(false)}
+         >
+          <X className="w-6 h-6 text-white" />
+         </button>
+        ) : (
+         <button
+          className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+          aria-label="Toggle mobile menu"
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen(true)}
+         >
+          <Menu className="w-6 h-6 text-white" />
+         </button>
+        )}
+       </div>
       </div>
       <nav ref={menuRef} className="flex flex-col items-center gap-5 py-2">
        {navLinks.map((link) => (

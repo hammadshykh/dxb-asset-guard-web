@@ -58,7 +58,7 @@ export default function HowWeWorkSection() {
       duration: 1,
       x: -50,
       opacity: 0,
-      ease: "power3.out",
+      ease: "power1.in",
      },
      "-=0.6"
     )
@@ -68,7 +68,7 @@ export default function HowWeWorkSection() {
       duration: 0.6,
       y: 20,
       opacity: 0,
-      ease: "power3.out",
+      ease: "power2.out",
       stagger: 0.1,
      },
      "-=0.4"

@@ -1,20 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
-// Register ScrollTrigger plugin
-if (typeof window !== "undefined") {
- gsap.registerPlugin(ScrollTrigger);
-}
+gsap.registerPlugin(ScrollTrigger);
 
 export default function WhyChooseUsSection() {
  const sectionRef = useRef<HTMLElement>(null);
 
- useEffect(() => {
-  const ctx = gsap.context(() => {
+ useGSAP(
+  () => {
    const tl = gsap.timeline({
     scrollTrigger: {
      trigger: sectionRef.current,
@@ -51,21 +49,35 @@ export default function WhyChooseUsSection() {
      },
      "-=0.4"
     )
+    // 🔥 Left side cards (1 & 2)
     .from(
-     ".why-feature",
+     ".why-feature.left",
      {
-      duration: 0.6,
-      y: 20,
+      x: -40,
+      scale: 0.85,
       opacity: 0,
-      ease: "power3.out",
-      stagger: 0.15,
+      duration: 1.2,
+      ease: "back.out(1.7)",
+      stagger: 0.2,
      },
      "-=0.2"
+    )
+    // 🔥 Right side cards (3 & 4)
+    .from(
+     ".why-feature.right",
+     {
+      x: 40,
+      scale: 0.85,
+      opacity: 0,
+      duration: 1.2,
+      ease: "back.out(1.7)",
+      stagger: 0.2,
+     },
+     "-=0.9"
     );
-  }, sectionRef);
-
-  return () => ctx.revert();
- }, []);
+  },
+  { scope: sectionRef }
+ );
 
  return (
   <section ref={sectionRef} className="relative py-10 md:pt-28 overflow-hidden">
@@ -87,7 +99,7 @@ export default function WhyChooseUsSection() {
        </span>
       </div>
 
-      <h2 className="why-title text-2xl  font-inter md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-6 leading-tight">
+      <h2 className="why-title text-2xl font-inter md:text-3xl lg:text-4xl font-semibold text-gray-900 mb-6 leading-tight">
        Your Trusted Partner for Property Investment Recovery
       </h2>
 
@@ -99,19 +111,17 @@ export default function WhyChooseUsSection() {
 
      {/* Features Grid */}
      <div className="grid grid-cols-1 !text-[#1E1E1E] md:grid-cols-2 lg:grid-cols-4 gap-4 md:pt-5">
-      {/* Feature 1 */}
-      <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg md:h-[224px]">
+      <div className="why-feature left bg-primary/15 backdrop-blur-sm p-6 rounded-lg md:h-[224px]">
        <h3 className="text-lg font-semibold text-gray-900 mb-3">
         Specialized Legal Expertise
        </h3>
        <p className="text-sm md:text-base leading-relaxed font-[300]">
         Our team of property law specialists has a proven track record of
-        recovering lost investments in {"Dubai's"} real estate market.
+        recovering lost investments in Dubai&apos;s real estate market.
        </p>
       </div>
 
-      {/* Feature 2 */}
-      <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
+      <div className="why-feature left bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
        <h3 className="text-lg font-semibold text-gray-900 mb-3">
         Risk-Free Service
        </h3>
@@ -121,8 +131,7 @@ export default function WhyChooseUsSection() {
        </p>
       </div>
 
-      {/* Feature 3 */}
-      <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
+      <div className="why-feature right bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
        <h3 className="text-lg font-semibold text-gray-900 mb-3">
         Tailored Solutions for Every Client
        </h3>
@@ -132,15 +141,13 @@ export default function WhyChooseUsSection() {
        </p>
       </div>
 
-      {/* Feature 4 */}
-      <div className="why-feature bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
+      <div className="why-feature right bg-primary/15 backdrop-blur-sm p-6 rounded-lg">
        <h3 className="text-lg font-semibold text-gray-900  mb-3">
         International Investor Support
        </h3>
        <p className="text-sm md:text-base leading-relaxed font-[300]">
-        {
-         "Whether you're local or an international investor, we handle everything—from legal filings to negotiations—on your behalf."
-        }
+        Whether {"you're"} local or an international investor, we handle
+        everything—from legal filings to negotiations—on your behalf.
        </p>
       </div>
      </div>

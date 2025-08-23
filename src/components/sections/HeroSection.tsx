@@ -8,15 +8,16 @@ import Header from "../layout/Header";
 
 export default function HeroSection() {
  const heroRef = useRef<HTMLElement>(null);
+
  useGSAP(() => {
-  // Animate each card inside bottom-cards smoothly
+  // Animate bottom cards
   gsap.from(".bottom-cards > div", {
    scale: 0.7,
    opacity: 0,
-   duration: 1.5,
-   delay: 2.8,
-   ease: "back.out(1.7)", // smoother bounce-like scale animation
-   stagger: 0.05, // each card one after another
+   duration: 1.3,
+   delay: 2,
+   ease: "back.out(1.7)",
+   stagger: 0.05,
   });
  }, []);
 
@@ -34,7 +35,7 @@ export default function HeroSection() {
     .from(
      ".hero-title",
      {
-      duration: 1.8,
+      duration: 1,
       y: 60,
       ease: "expo.out",
       stagger: 0.5,
@@ -60,19 +61,20 @@ export default function HeroSection() {
       ease: "power3.out",
      },
      "-=0.3"
-    )
-    .from(
-     ".hero-cards",
-     {
-      duration: 0.8,
-      y: 40,
-      opacity: 0,
-      ease: "power3.out",
-      stagger: 0.1,
-     },
-     "-=0.2"
     );
   }, heroRef);
+
+  // ✅ GSAP parallax for background
+  gsap.to(".hero-bg", {
+   backgroundPosition: "50% 100%", // move background as you scroll
+   ease: "none",
+   scrollTrigger: {
+    trigger: heroRef.current,
+    start: "top top",
+    end: "bottom top",
+    scrub: true, // smooth sync with scroll
+   },
+  });
 
   return () => ctx.revert();
  }, []);
@@ -80,16 +82,18 @@ export default function HeroSection() {
  return (
   <section
    ref={heroRef}
-   className="relative md:min-h-screen bg-cover bg-center bg-no-repeat pt-4"
+   className="relative md:min-h-screen bg-cover bg-center bg-no-repeat pt-4 hero-bg"
    style={{
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)), url('/hero-image.jpg')`,
+    backgroundAttachment: "fixed", // ✅ Parallax effect
    }}
   >
    {/* Header Navigation */}
    <Header />
+
    {/* Hero Content */}
    <div className="relative z-10 pt-8 md:pt-20 pb-8 md:pb-10">
-    <div className="max-w-7xl mx-auto md:px-0  px-4 ">
+    <div className="max-w-7xl mx-auto md:px-0 px-4 ">
      <div className="max-w-4xl">
       {/* Badge */}
       <div className="hero-badge inline-block mb-6">
@@ -130,7 +134,7 @@ export default function HeroSection() {
        <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px] snap-center shrink-0">
         <h3 className="text-white font-semibold mb-3">Lost Your Investment?</h3>
         <p className="text-gray-300 text-sm leading-relaxed">
-         We recover funds from failed property projects in Dubai—hassle-free.
+         We recover funds from failed property projects in Dubai— hassle-free.
         </p>
        </div>
 
@@ -143,7 +147,7 @@ export default function HeroSection() {
        </div>
 
        {/* Card 3 */}
-       <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px]   snap-center shrink-0">
+       <div className="bg-[#FFFFFF1C] bg-opacity-70 backdrop-blur-sm p-6 rounded-lg max-w-[240px] snap-center shrink-0">
         <h3 className="text-white font-semibold mb-3">Expert Legal Help</h3>
         <p className="text-gray-300 text-sm leading-relaxed">
          Our team navigates Dubai&apos;s complex legal system to reclaim your

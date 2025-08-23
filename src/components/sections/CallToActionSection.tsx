@@ -1,21 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-// Register ScrollTrigger plugin
-if (typeof window !== "undefined") {
- gsap.registerPlugin(ScrollTrigger);
-}
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CallToActionSection() {
  const sectionRef = useRef<HTMLElement>(null);
 
- useEffect(() => {
-  const ctx = gsap.context(() => {
+ useGSAP(
+  () => {
    const tl = gsap.timeline({
     scrollTrigger: {
      trigger: sectionRef.current,
@@ -25,6 +23,7 @@ export default function CallToActionSection() {
     },
    });
 
+   // Text animations
    tl
     .from(".cta-title", {
      duration: 0.8,
@@ -51,24 +50,31 @@ export default function CallToActionSection() {
       ease: "power3.out",
      },
      "-=0.3"
-    )
-    .from(
-     ".cta-image",
-     {
-      duration: 1,
-      x: 50,
-      opacity: 0,
-      ease: "power3.out",
-     },
-     "-=0.6"
     );
-  }, sectionRef);
 
-  return () => ctx.revert();
- }, []);
+   // Image parallax-style animation
+   gsap.from(".cta-image", {
+    scrollTrigger: {
+     trigger: sectionRef.current,
+     start: "top 90%",
+     end: "bottom 20%",
+     scrub: true, // smooth parallax effect on scroll
+    },
+    y: 80,
+    scale: 1.1,
+    opacity: 0,
+    ease: "power3.out",
+    duration: 1.2,
+   });
+  },
+  { scope: sectionRef }
+ );
 
  return (
-  <section ref={sectionRef} className="md:py-16 py-10 bg-[#A58E50] relative">
+  <section
+   ref={sectionRef}
+   className="md:py-16 py-10 bg-[#A58E50] relative overflow-hidden"
+  >
    <div className="max-w-7xl mx-auto px-4 md:px-0">
     <div className="md:grid flex flex-col-reverse md:grid-cols-1 lg:grid-cols-2 gap-8 md:gap-0  items-center">
      {/* Left Content */}
@@ -88,7 +94,7 @@ export default function CallToActionSection() {
       <div className="cta-button pt-2">
        <Button
         size="lg"
-        className="bg-white py-6  text-gray-800 hover:bg-gray-50 px-8 md:px-10  text-base font-semibold rounded-full transition-all duration-300  hover:shadow-xl"
+        className="bg-white py-6 text-gray-800 hover:bg-gray-50 px-8 md:px-10 text-base font-semibold rounded-full transition-all duration-300 hover:shadow-xl"
        >
         Schedule Your Consultation
        </Button>
@@ -96,12 +102,12 @@ export default function CallToActionSection() {
      </div>
 
      {/* Right Image */}
-     <div className=" md:absolute right-0 top-0">
-      <div className="relative a overflow-hidden shadow-2xl">
+     <div className="md:absolute right-0 top-0">
+      <div className="relative overflow-hidden shadow-2xl rounded-lg">
        <Image
         src="/victim-section-image.jpg"
         alt="Dubai construction and development projects"
-        className="w-full h-[300px] sm:h-[300px] lg:h-[420px] object-cover"
+        className="cta-image w-full h-[300px] sm:h-[300px] lg:h-[420px] object-cover"
         width={400}
         height={400}
        />

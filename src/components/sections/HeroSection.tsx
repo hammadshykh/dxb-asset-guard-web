@@ -15,7 +15,7 @@ export default function HeroSection() {
    scale: 0.7,
    opacity: 0,
    duration: 1.3,
-   delay: 2,
+   delay: 1,
    ease: "back.out(1.7)",
    stagger: 0.05,
   });
@@ -33,34 +33,14 @@ export default function HeroSection() {
      ease: "power3.out",
     })
     .from(
-     ".hero-title",
+     ".hero-text",
      {
-      duration: 1,
-      y: 60,
+      duration: 1.2,
+      y: 100,
       ease: "expo.out",
       stagger: 0.5,
      },
      "-=0.4"
-    )
-    .from(
-     ".hero-description",
-     {
-      duration: 0.8,
-      y: 40,
-      opacity: 0,
-      ease: "power3.out",
-     },
-     "-=0.5"
-    )
-    .from(
-     ".hero-cta",
-     {
-      duration: 0.6,
-      y: 20,
-      opacity: 0,
-      ease: "power3.out",
-     },
-     "-=0.3"
     );
   }, heroRef);
 
@@ -103,27 +83,28 @@ export default function HeroSection() {
       </div>
 
       {/* Main Headline */}
-      <h1 className="hero-title text-3xl font-inter sm:text-4xl lg:text-6xl font-medium  text-white leading-tight tracking-tighter mb-6">
-       Recover Your Lost Property
-       <br />
-       Investments in <span className="italic">UAE</span>
-      </h1>
+      <div className="hero-text">
+       <h1 className="hero-title text-3xl font-inter sm:text-4xl lg:text-6xl font-medium  text-white leading-tight tracking-tighter mb-6">
+        Recover Your Lost Property
+        <br />
+        Investments in <span className="italic">UAE</span>
+       </h1>
 
-      {/* Description */}
-      <p className="hero-description text-base md:text-xl text-gray-200 mb-8 leading-relaxed">
-       Helping investors reclaim funds from failed or fraudulent
-       <br />
-       real estate projects across Dubai.
-      </p>
-
-      {/* CTA Button */}
-      <div className="hero-cta mb-16">
-       <Button
-        size="lg"
-        className="rounded-full md:px-10 font-semibold md:text-base md:h-12"
-       >
-        Schedule Your Consultation
-       </Button>
+       {/* Description */}
+       <p className="hero-description text-base md:text-xl text-gray-200 mb-8 leading-relaxed">
+        Helping investors reclaim funds from failed or fraudulent
+        <br />
+        real estate projects across Dubai.
+       </p>
+       {/* CTA Button */}
+       <div className="hero-cta mb-16">
+        <Button
+         size="lg"
+         className="rounded-full md:px-10 font-semibold md:text-base md:h-12"
+        >
+         Schedule Your Consultation
+        </Button>
+       </div>
       </div>
      </div>
 

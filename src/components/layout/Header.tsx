@@ -236,7 +236,29 @@ const Header = () => {
      className="absolute inset-0 flex items-center justify-center p-6"
      onClick={(e) => e.stopPropagation()}
     >
-     <div className="w-full mx-4 rounded-2xl p-6 ">
+     <div className="w-full mx-4 rounded-2xl p-6">
+      <div className="flex items-center justify-between gap-3">
+       <div></div>
+       {isOpen ? (
+        <button
+         className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+         aria-label="Toggle mobile menu"
+         aria-expanded={isOpen}
+         onClick={() => setIsOpen(false)}
+        >
+         <X className="w-6 h-6 text-white" />
+        </button>
+       ) : (
+        <button
+         className="text-white p-2 hover:bg-white/10 rounded-lg transition-colors duration-200"
+         aria-label="Toggle mobile menu"
+         aria-expanded={isOpen}
+         onClick={() => setIsOpen(true)}
+        >
+         <Menu className="w-6 h-6 text-white" />
+        </button>
+       )}
+      </div>
       <nav ref={menuRef} className="flex flex-col items-center gap-5 py-2">
        {navLinks.map((link) => (
         <Link
